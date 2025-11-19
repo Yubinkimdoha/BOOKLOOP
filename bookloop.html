@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BOOKLOOP — S.K.V. VIVEK VIHAR</title>
+
+<style>
+:root{
+  --main:#003631;
+  --side:#FFEDA8;
+  --accent:#E6F2EF;
+  --light-shadow:0 4px 14px rgba(2,18,16,0.05);
+  --strong-shadow:0 6px 18px rgba(0,0,0,0.12);
+  --border:1px solid rgba(0,0,0,0.06);
+  --radius:12px;
+  --text-dark:#062723;
+  --max-width:960px;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Inter,system-ui;
+  background:linear-gradient(180deg,var(--accent),#fff);
+  color:var(--text-dark);
+  padding:32px 16px;
+  display:flex;
+  justify-content:center;
+}
+
+/* CONTAINER */
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  background:white;
+  border-radius:16px;
+  box-shadow:0 8px 30px rgba(2,18,16,0.08);
+  overflow:hidden;
+  display:grid;
+}
+
+/* LEFT PANEL */
+.main{
+  padding:40px;
+  background:linear-gradient(180deg,var(--main),#01413a 80%);
+  color:var(--side);
+  min-height:420px;
+}
+
+.brand{
+  display:flex;align-items:center;gap:16px;
+}
+
+.logo{
+  width:86px;height:86px;
+  background:var(--side);color:var(--main);
+  border-radius:12px;
+  display:grid;place-items:center;
+  font-weight:800;font-size:20px;
+  box-shadow:var(--strong-shadow);
+}
+
+h1{margin:18px 0 6px;font-size:40px;letter-spacing:1px}
+.school{font-weight:600;margin-bottom:18px;opacity:0.95}
+.subtitle{max-width:62%;line-height:1.5;opacity:0.95}
+
+.cta-row{margin-top:28px;display:flex;gap:12px}
+.btn{
+  background:var(--side);color:var(--main);
+  padding:12px 18px;border:none;
+  border-radius:10px;font-weight:700;
+  cursor:pointer;box-shadow:var(--strong-shadow);
+}
+.ghost{
+  background:transparent;
+  border:2px solid rgba(255,255,255,0.12);
+  color:var(--side);
+}
+
+/* RIGHT SIDEBAR */
+.side{
+  background:var(--side);
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.card{
+  background:rgba(0,0,0,0.02);
+  padding:14px;
+  border-radius:10px;
+  box-shadow:var(--light-shadow);
+}
+
+.card h3{
+  margin-bottom:8px;
+  font-size:16px;
+  color:var(--main);
+}
+
+/* FORM ELEMENTS */
+input,select{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:var(--border);
+}
+
+.classes{display:flex;gap:10px;flex-wrap:wrap}
+.classes label{
+  background:white;
+  padding:8px 10px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.04);
+  display:flex;align-items:center;gap:8px;
+  font-weight:600;color:var(--main);
+}
+
+input[type=checkbox]{width:16px;height:16px;accent-color:var(--main)}
+
+.donate-btn{
+  background:var(--main);
+  color:var(--side);
+  padding:10px 14px;
+  border:none;
+  border-radius:10px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:920px){
+  .main{min-height:360px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LEFT SIDE -->
+  <main class="main">
+    <div class="brand">
+      <div class="logo">BL</div>
+      <div>
+        <div style="font-weight:700;opacity:0.9;">BOOKLOOP</div>
+        <div style="font-size:13px;opacity:0.9;">Donate • Re-use • Empower</div>
+      </div>
+    </div>
+
+    <h1>BOOKLOOP</h1>
+    <div class="school">S.K.V. VIVEK VIHAR</div>
+
+    <p class="subtitle">
+      A student-run initiative for 8th to 12th graders — selling used books,
+      find low-cost textbooks, and help classmates continue learning.
+    </p>
+
+    <div class="cta-row">
+      <button class="btn">Browse Books</button>
+      <button class="btn ghost">How it works</button>
+    </div>
+
+    <section style="margin-top:28px;">
+      <div class="card" style="background:rgba(255,255,255,0.06);color:var(--side)">
+        <h3 style="color:var(--side);margin-bottom:8px">Quick steps to donate</h3>
+        <ol style="margin-left:18px;opacity:0.95;">
+          <li>Choose classes (8th — 12th)</li>
+          <li>List the books and their condition</li>
+          <li>Drop them at the school collection point or request pickup</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <!-- RIGHT SIDE -->
+  <aside class="side">
+
+    <!-- SELL SECTION -->
+    <div class="card">
+      <h3>Select classes (8 — 12)</h3>
+      <div class="classes">
+        <label><input type="checkbox" value="8">8</label>
+        <label><input type="checkbox" value="9">9</label>
+        <label><input type="checkbox" value="10">10</label>
+        <label><input type="checkbox" value="11">11</label>
+        <label><input type="checkbox" value="12">12</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Book details</h3>
+      <form id="donationForm">
+        <input id="title" placeholder="Book title">
+        <select id="condition">
+          <option>New</option><option>Good</option>
+          <option>Fair</option><option>Worn</option>
+        </select>
+
+        <div style="margin-top:10px;display:flex;gap:8px;">
+          <button type="button" class="donate-btn" onclick="submitDonation()">Submit Selling</button>
+          <button type="reset" style="background:transparent;border:none;color:var(--main);font-weight:700;">Reset</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- BUY SECTION -->
+    <div class="card">
+      <h3>Buy Books</h3>
+
+      <select id="buyClass">
+        <option value="">Choose class</option>
+        <option>8</option><option>9</option>
+        <option>10</option><option>11</option><option>12</option>
+      </select>
+
+      <input id="searchBook" placeholder="Search for a book...">
+
+      <button class="btn" style="width:100%;background:var(--main);color:var(--side);" onclick="searchBook()">
+        Search
+      </button>
+
+      <h4 style="margin-top:12px;color:var(--main)">Request a Book</h4>
+      <select id="requestClass">
+        <option value="">Choose class</option>
+        <option>8</option><option>9</option>
+        <option>10</option><option>11</option><option>12</option>
+      </select>
+
+      <input id="requestBook" placeholder="Book you need">
+
+      <button class="donate-btn" style="width:100%" onclick="requestBookFn()">Submit Request</button>
+    </div>
+
+  </aside>
+</div>
+
+<script>
+function submitDonation(){
+  const t = title.value.trim();
+  const c = condition.value;
+  if(!t) return alert("Please enter a book title.");
+  alert(`Selling submitted: "${t}" (${c})`);
+}
+
+function searchBook(){
+  const q = searchBook.value.trim();
+  const cls = buyClass.value;
+  if(!cls) return alert("Select a class.");
+  if(!q) return alert("Enter book name.");
+  alert(`Searching for "${q}" for Class ${cls}`);
+}
+
+function requestBookFn(){
+  const q = requestBook.value.trim();
+  const cls = requestClass.value;
+  if(!cls || !q) return alert("Fill all fields.");
+  alert(`Request submitted: "${q}" for Class ${cls}`);
+  requestBook.value = "";
+  requestClass.value = "";
+}
+</script>
+
+</body>
+</html>
