@@ -198,7 +198,7 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--main)}
 
     <!-- BUY SECTION -->
     <div class="card">
-      <h3>Sell Books</h3>
+      <h3>Buy Books</h3>
 
       <select id="buyClass">
         <option value="">Choose class</option>
@@ -249,7 +249,7 @@ function submitDonation(){
   const t = title.value.trim();
   const c = condition.value;
   if(!t) return alert("Please enter a book title.");
-  alert(`Selling submitted: "${t}" (${c})`);
+  alert(Selling submitted: "${t}" (${c}));
 }
 
 function searchBook(){
@@ -257,14 +257,14 @@ function searchBook(){
   const cls = buyClass.value;
   if(!cls) return alert("Select a class.");
   if(!q) return alert("Enter book name.");
-  alert(`Searching for "${q}" for Class ${cls}`);
+  alert(Searching for "${q}" for Class ${cls});
 }
 
 function requestBookFn(){
   const q = requestBook.value.trim();
   const cls = requestClass.value;
   if(!cls || !q) return alert("Fill all fields.");
-  alert(`Request submitted: "${q}" for Class ${cls}`);
+  alert(Request submitted: "${q}" for Class ${cls});
   requestBook.value = "";
   requestClass.value = "";
 }
@@ -336,7 +336,7 @@ function changeLang(){
 
     document.querySelector(".donate-btn").innerText = "Submit Selling";
 
-    document.querySelectorAll(".card h3")[2].innerText = "Sell Books";
+    document.querySelectorAll(".card h3")[2].innerText = "Buy Books";
 
     document.getElementById("buyClass").options[0].text = "Choose class";
     document.getElementById("searchBook").placeholder = "Search for a book...";
@@ -359,5 +359,6 @@ function changeLang(){
 
 </body>
 </html>
+
 
 
