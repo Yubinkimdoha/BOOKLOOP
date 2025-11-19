@@ -52,14 +52,6 @@ body{
   display:flex;align-items:center;gap:16px;
 }
 
-.logo{
-  width:86px;height:86px;
-  background:var(--side);color:var(--main);
-  border-radius:12px;
-  display:grid;place-items:center;
-  font-weight:800;font-size:20px;
-  box-shadow:var(--strong-shadow);
-}
 
 h1{margin:18px 0 6px;font-size:40px;letter-spacing:1px}
 .school{font-weight:600;margin-bottom:18px;opacity:0.95}
@@ -138,24 +130,21 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--main)}
 </head>
 
 <body>
+...
+<!-- Entire website content here -->
+
+
 
 <div class="container">
 
   <!-- LEFT SIDE -->
   <main class="main">
-    <div class="brand">
-      <div class="logo">BL</div>
-      <div>
-        <div style="font-weight:700;opacity:0.9;">BOOKLOOP</div>
-        <div style="font-size:13px;opacity:0.9;">• Re-use • Empower</div>
-      </div>
-    </div>
-
+    
     <h1>BOOKLOOP</h1>
     <div class="school">S.K.V. VIVEK VIHAR</div>
 
     <p class="subtitle">
-      A student-run initiative for 8th to 12th graders — selling used books,
+      Selling used books,
       find low-cost textbooks, and help classmates continue learning.
     </p>
 
@@ -238,6 +227,23 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--main)}
   </aside>
 </div>
 
+<!-- LANGUAGE SECTION (NEW) -->
+<div class="card">
+  <h3>Language</h3>
+  <select id="langSelect" onchange="changeLang()">
+    <option value="en">English</option>
+    <option value="hi">Hindi</option>
+  </select>
+
+  <p style="margin-top:10px;font-size:14px;color:var(--main);" id="langStatus">
+    Current language: English
+  </p>
+</div>
+
+ </div>
+
+
+
 <script>
 function submitDonation(){
   const t = title.value.trim();
@@ -262,8 +268,94 @@ function requestBookFn(){
   requestBook.value = "";
   requestClass.value = "";
 }
+
+function changeLang(){
+  const lang = document.getElementById("langSelect").value;
+
+  if(lang === "hi"){
+    // LEFT SECTION
+    document.querySelector("h1").innerText = "बुकलूप";
+    document.querySelector(".school").innerText = "एस.के.वी. विवेक विहार";
+
+    document.querySelector(".subtitle").innerText =
+      "8वीं से 12वीं तक के छात्रों के लिए — पुरानी किताबें बेचें, कम कीमत में किताबें पाएं और अपने सहपाठियों की मदद करें।";
+
+    document.querySelector(".btn").innerText = "किताबें देखें";
+    document.querySelector(".ghost").innerText = "यह कैसे काम करता है";
+
+    // RIGHT PANEL — SELL SECTION
+    document.querySelectorAll(".card h3")[0].innerText = "मदद करने के त्वरित चरण";
+    document.querySelectorAll(".card h3")[1].innerText = "किताब का विवरण";
+
+    document.getElementById("title").placeholder = "किताब का नाम";
+    document.getElementById("condition").options[0].text = "नई";
+    document.getElementById("condition").options[1].text = "अच्छी";
+    document.getElementById("condition").options[2].text = "ठीक-ठाक";
+    document.getElementById("condition").options[3].text = "पुरानी";
+
+    document.querySelector(".donate-btn").innerText = "बेचने के लिए जमा करें";
+
+    // BUY SECTION
+    document.querySelectorAll(".card h3")[2].innerText = "किताब बेचते";
+
+    document.getElementById("buyClass").options[0].text = "क्लास चुनें";
+    document.getElementById("searchBook").placeholder = "किताब खोजें...";
+
+    document.querySelectorAll(".btn")[1].innerText = "खोजें";
+
+    document.querySelector("h4").innerText = "किताब की रिक्वेस्ट करें";
+    document.getElementById("requestClass").options[0].text = "क्लास चुनें";
+    document.getElementById("requestBook").placeholder = "ज़रूरत वाली किताब";
+
+    document.querySelectorAll(".donate-btn")[1].innerText = "रिक्वेस्ट भेजें";
+
+    document.getElementById("langStatus").innerText = "Language: Hindi";
+
+ 
+  }
+
+  else{
+    // RESET BACK TO ENGLISH
+    document.querySelector("h1").innerText = "BOOKLOOP";
+    document.querySelector(".school").innerText = "S.K.V. VIVEK VIHAR";
+
+    document.querySelector(".subtitle").innerText =
+      "Selling used books, find low-cost textbooks, and help classmates continue learning.";
+
+    document.querySelector(".btn").innerText = "Browse Books";
+    document.querySelector(".ghost").innerText = "How it works";
+
+    document.querySelectorAll(".card h3")[0].innerText = "Quick steps to help";
+    document.querySelectorAll(".card h3")[1].innerText = "Book details";
+
+    document.getElementById("title").placeholder = "Book title";
+    document.getElementById("condition").options[0].text = "New";
+    document.getElementById("condition").options[1].text = "Good";
+    document.getElementById("condition").options[2].text = "Fair";
+    document.getElementById("condition").options[3].text = "Worn";
+
+    document.querySelector(".donate-btn").innerText = "Submit Selling";
+
+    document.querySelectorAll(".card h3")[2].innerText = "Buy Books";
+
+    document.getElementById("buyClass").options[0].text = "Choose class";
+    document.getElementById("searchBook").placeholder = "Search for a book...";
+
+    document.querySelectorAll(".btn")[1].innerText = "Search";
+
+    document.querySelector("h4").innerText = "Request a Book";
+    document.getElementById("requestClass").options[0].text = "Choose class";
+    document.getElementById("requestBook").placeholder = "Book you need";
+
+    document.querySelectorAll(".donate-btn")[1].innerText = "Submit Request";
+
+    document.getElementById("langStatus").innerText = "Language: English";
+
+    }
+}
+
+
 </script>
 
 </body>
 </html>
-
