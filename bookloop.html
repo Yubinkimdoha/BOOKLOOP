@@ -13,192 +13,123 @@
   --light-shadow:0 4px 14px rgba(2,18,16,0.05);
   --strong-shadow:0 6px 18px rgba(0,0,0,0.12);
   --border:1px solid rgba(0,0,0,0.06);
-  --radius:12px;
   --text-dark:#062723;
-  --max-width:960px;
 }
 
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:Inter,system-ui;
   background:linear-gradient(180deg,var(--accent),#fff);
-  color:var(--text-dark);
+  display:flex;justify-content:center;
   padding:32px 16px;
-  display:flex;
-  justify-content:center;
+  color:var(--text-dark);
 }
 
-/* CONTAINER */
 .container{
-  width:100%;
-  max-width:var(--max-width);
-  background:white;
-  border-radius:16px;
+  width:100%;max-width:950px;
+  background:white;border-radius:16px;
   box-shadow:0 8px 30px rgba(2,18,16,0.08);
-  overflow:hidden;
-  display:grid;
+  overflow:hidden;display:grid;
 }
 
-/* LEFT PANEL */
 .main{
   padding:40px;
   background:linear-gradient(180deg,var(--main),#01413a 80%);
   color:var(--side);
-  min-height:420px;
 }
 
-.brand{
-  display:flex;align-items:center;gap:16px;
-}
+h1{font-size:40px;margin:16px 0 6px}
+.subtitle{max-width:65%;opacity:0.92}
 
-
-h1{margin:18px 0 6px;font-size:40px;letter-spacing:1px}
-.school{font-weight:600;margin-bottom:18px;opacity:0.95}
-.subtitle{max-width:62%;line-height:1.5;opacity:0.95}
-
-.cta-row{margin-top:28px;display:flex;gap:12px}
 .btn{
-  background:var(--side);color:var(--main);
-  padding:12px 18px;border:none;
-  border-radius:10px;font-weight:700;
-  cursor:pointer;box-shadow:var(--strong-shadow);
+  padding:12px 18px;font-weight:700;
+  border-radius:10px;border:none;
+  cursor:pointer;
 }
-.ghost{
-  background:transparent;
-  border:2px solid rgba(255,255,255,0.12);
-  color:var(--side);
-}
+.primary-btn{background:var(--side);color:var(--main)}
+.ghost-btn{background:transparent;color:var(--side);border:2px solid rgba(255,255,255,0.15)}
 
-/* RIGHT SIDEBAR */
 .side{
   background:var(--side);
-  padding:28px;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+  padding:26px;
+  display:flex;flex-direction:column;gap:18px;
 }
 
 .card{
-  background:rgba(0,0,0,0.02);
-  padding:14px;
-  border-radius:10px;
+  background:#ffffff44;
+  padding:14px;border-radius:10px;
   box-shadow:var(--light-shadow);
 }
 
-.card h3{
-  margin-bottom:8px;
-  font-size:16px;
-  color:var(--main);
-}
-
-/* FORM ELEMENTS */
 input,select{
-  width:100%;
-  padding:10px;
-  border-radius:8px;
-  border:var(--border);
+  width:100%;padding:10px;
+  border-radius:8px;border:var(--border);
 }
-
-.classes{display:flex;gap:10px;flex-wrap:wrap}
-.classes label{
-  background:white;
-  padding:8px 10px;
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.04);
-  display:flex;align-items:center;gap:8px;
-  font-weight:600;color:var(--main);
-}
-
-input[type=checkbox]{width:16px;height:16px;accent-color:var(--main)}
 
 .donate-btn{
+  width:100%;
+  padding:10px;
   background:var(--main);
   color:var(--side);
-  padding:10px 14px;
-  border:none;
-  border-radius:10px;
-  font-weight:800;
-  cursor:pointer;
+  border:none;border-radius:10px;
+  font-weight:800;cursor:pointer;
 }
 
-/* RESPONSIVE */
-@media(max-width:920px){
-  .main{min-height:360px}
+.lang-box{
+  max-width:950px;width:100%;
+  margin-top:20px;
 }
 </style>
 </head>
 
 <body>
-...
-<!-- Entire website content here -->
-
-
 
 <div class="container">
 
-  <!-- LEFT SIDE -->
+  <!-- LEFT PANEL -->
   <main class="main">
-    
-    <h1>BOOKLOOP</h1>
-    <div class="school">S.K.V. VIVEK VIHAR</div>
+    <h1 id="titleMain">BOOKLOOP</h1>
+    <div id="schoolName">S.K.V. VIVEK VIHAR</div>
 
-    <p class="subtitle">
-      Selling used books,
-      find low-cost textbooks, and help classmates continue learning.
+    <p class="subtitle" id="subtitle">
+      Selling used books, find low-cost textbooks, and help classmates continue learning.
     </p>
 
-    <div class="cta-row">
-      <button class="btn">Browse Books</button>
-      <button class="btn ghost">How it works</button>
+    <div style="margin-top:20px;display:flex;gap:12px">
+      <button class="btn primary-btn" id="browseBtn">Browse Books</button>
+      <button class="btn ghost-btn" id="howBtn">How it works</button>
     </div>
 
-    <section style="margin-top:28px;">
-      <div class="card" style="background:rgba(255,255,255,0.06);color:var(--side)">
-        <h3 style="color:var(--side);margin-bottom:8px">Quick steps to help</h3>
-        <ol style="margin-left:18px;opacity:0.95;">
-          <li>Choose classes (8th — 12th)</li>
-          <li>List the books and their condition</li>
-          <li>Drop them at the school collection point or request pickup</li>
-        </ol>
-      </div>
-    </section>
+    <div class="card" style="margin-top:26px;background:#ffffff22">
+      <h3 id="quickSteps">Quick steps to help</h3>
+      <ol style="margin-left:18px;opacity:0.95">
+        <li id="step1">Choose classes (8th — 12th)</li>
+        <li id="step2">List the books and their condition</li>
+        <li id="step3">Drop them at the school collection point or request pickup</li>
+      </ol>
+    </div>
   </main>
 
-  <!-- RIGHT SIDE -->
+  <!-- RIGHT PANEL -->
   <aside class="side">
 
-    <!-- SELL SECTION -->
+    <!-- SELL -->
     <div class="card">
-      <h3>Select classes (8 — 12)</h3>
-      <div class="classes">
-        <label><input type="checkbox" value="8">8</label>
-        <label><input type="checkbox" value="9">9</label>
-        <label><input type="checkbox" value="10">10</label>
-        <label><input type="checkbox" value="11">11</label>
-        <label><input type="checkbox" value="12">12</label>
-      </div>
+      <h3 id="bookDetails">Book details</h3>
+      <input id="bookTitle" placeholder="Book title">
+      <select id="bookCondition">
+        <option>New</option><option>Good</option>
+        <option>Fair</option><option>Worn</option>
+      </select>
+
+      <button class="donate-btn" onclick="submitDonation()" id="sellBtn">
+        Submit Selling
+      </button>
     </div>
 
+    <!-- BUY -->
     <div class="card">
-      <h3>Book details</h3>
-      <form id="donationForm">
-        <input id="title" placeholder="Book title">
-        <select id="condition">
-          <option>New</option><option>Good</option>
-          <option>Fair</option><option>Worn</option>
-        </select>
-
-        <div style="margin-top:10px;display:flex;gap:8px;">
-          <button type="button" class="donate-btn" onclick="submitDonation()">Submit Selling</button>
-          <button type="reset" style="background:transparent;border:none;color:var(--main);font-weight:700;">Reset</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- BUY SECTION -->
-    <div class="card">
-      <h3>Buy Books</h3>
+      <h3 id="buyTitle">Buy Books</h3>
 
       <select id="buyClass">
         <option value="">Choose class</option>
@@ -208,11 +139,9 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--main)}
 
       <input id="searchBook" placeholder="Search for a book...">
 
-      <button class="btn" style="width:100%;background:var(--main);color:var(--side);" onclick="searchBook()">
-        Search
-      </button>
+      <button class="donate-btn" onclick="searchBook()" id="searchBtn">Search</button>
 
-      <h4 style="margin-top:12px;color:var(--main)">Request a Book</h4>
+      <h4 id="reqLabel" style="margin-top:10px;color:var(--main)">Request a Book</h4>
       <select id="requestClass">
         <option value="">Choose class</option>
         <option>8</option><option>9</option>
@@ -220,142 +149,86 @@ input[type=checkbox]{width:16px;height:16px;accent-color:var(--main)}
       </select>
 
       <input id="requestBook" placeholder="Book you need">
-
-      <button class="donate-btn" style="width:100%" onclick="requestBookFn()">Submit Request</button>
+      <button class="donate-btn" onclick="requestBookFn()" id="reqBtn">Submit Request</button>
     </div>
 
   </aside>
+
 </div>
 
-<!-- LANGUAGE SECTION (NEW) -->
-<div class="card">
+<!-- LANGUAGE -->
+<div class="card lang-box">
   <h3>Language</h3>
   <select id="langSelect" onchange="changeLang()">
     <option value="en">English</option>
     <option value="hi">Hindi</option>
   </select>
-
-  <p style="margin-top:10px;font-size:14px;color:var(--main);" id="langStatus">
-    Current language: English
-  </p>
+  <p id="langStatus" style="margin-top:6px;color:var(--main)">Current language: English</p>
 </div>
-
- </div>
-
-
 
 <script>
 function submitDonation(){
-  const t = title.value.trim();
-  const c = condition.value;
+  const t = bookTitle.value.trim();
   if(!t) return alert("Please enter a book title.");
-  alert(Selling submitted: "${t}" (${c}));
+  alert(`Selling submitted: ${t}`);
 }
 
 function searchBook(){
-  const q = searchBook.value.trim();
-  const cls = buyClass.value;
-  if(!cls) return alert("Select a class.");
-  if(!q) return alert("Enter book name.");
-  alert(Searching for "${q}" for Class ${cls});
+  if(!buyClass.value) return alert("Select a class.");
+  if(!searchBook.value.trim()) return alert("Enter book name.");
+  alert(`Searching for "${searchBook.value}" for Class ${buyClass.value}`);
 }
 
 function requestBookFn(){
-  const q = requestBook.value.trim();
-  const cls = requestClass.value;
-  if(!cls || !q) return alert("Fill all fields.");
-  alert(Request submitted: "${q}" for Class ${cls});
+  if(!requestClass.value || !requestBook.value.trim())
+    return alert("Fill all fields.");
+  alert(`Request submitted: "${requestBook.value}" for Class ${requestClass.value}`);
   requestBook.value = "";
   requestClass.value = "";
 }
 
 function changeLang(){
-  const lang = document.getElementById("langSelect").value;
+  const hi = langSelect.value === "hi";
 
-  if(lang === "hi"){
-    // LEFT SECTION
-    document.querySelector("h1").innerText = "बुकलूप";
-    document.querySelector(".school").innerText = "एस.के.वी. विवेक विहार";
+  titleMain.innerText = hi ? "बुकलूप" : "BOOKLOOP";
+  schoolName.innerText = hi ? "एस.के.वी. विवेक विहार" : "S.K.V. VIVEK VIHAR";
 
-    document.querySelector(".subtitle").innerText =
-      "8वीं से 12वीं तक के छात्रों के लिए — पुरानी किताबें बेचें, कम कीमत में किताबें पाएं और अपने सहपाठियों की मदद करें।";
+  subtitle.innerText = hi
+    ? "पुरानी किताबें बेचें, कम कीमत में किताबें पाएं और अपने सहपाठियों की मदद करें।"
+    : "Selling used books, find low-cost textbooks, and help classmates continue learning.";
 
-    document.querySelector(".btn").innerText = "किताबें देखें";
-    document.querySelector(".ghost").innerText = "यह कैसे काम करता है";
+  browseBtn.innerText = hi ? "किताबें देखें" : "Browse Books";
+  howBtn.innerText = hi ? "यह कैसे काम करता है" : "How it works";
 
-    // RIGHT PANEL — SELL SECTION
-    document.querySelectorAll(".card h3")[0].innerText = "मदद करने के त्वरित चरण";
-    document.querySelectorAll(".card h3")[1].innerText = "किताब का विवरण";
+  quickSteps.innerText = hi ? "मदद करने के त्वरित चरण" : "Quick steps to help";
+  step1.innerText = hi ? "क्लास चुनें (8 — 12)" : "Choose classes (8th — 12th)";
+  step2.innerText = hi ? "किताबें और उनकी स्थिति लिखें" : "List the books and their condition";
+  step3.innerText = hi ? "कलेक्शन पॉइंट पर दें या पिकअप मांगे" : "Drop them at the collection point or request pickup";
 
-    document.getElementById("title").placeholder = "किताब का नाम";
-    document.getElementById("condition").options[0].text = "नई";
-    document.getElementById("condition").options[1].text = "अच्छी";
-    document.getElementById("condition").options[2].text = "ठीक-ठाक";
-    document.getElementById("condition").options[3].text = "पुरानी";
+  bookDetails.innerText = hi ? "किताब का विवरण" : "Book details";
 
-    document.querySelector(".donate-btn").innerText = "बेचने के लिए जमा करें";
+  bookTitle.placeholder = hi ? "किताब का नाम" : "Book title";
+  bookCondition.options[0].text = hi ? "नई" : "New";
+  bookCondition.options[1].text = hi ? "अच्छी" : "Good";
+  bookCondition.options[2].text = hi ? "ठीक-ठाक" : "Fair";
+  bookCondition.options[3].text = hi ? "पुरानी" : "Worn";
 
-    // BUY SECTION
-    document.querySelectorAll(".card h3")[2].innerText = "किताब बेचते";
+  sellBtn.innerText = hi ? "बेचने के लिए जमा करें" : "Submit Selling";
 
-    document.getElementById("buyClass").options[0].text = "क्लास चुनें";
-    document.getElementById("searchBook").placeholder = "किताब खोजें...";
+  buyTitle.innerText = hi ? "किताब खरीदें" : "Buy Books";
+  buyClass.options[0].text = hi ? "क्लास चुनें" : "Choose class";
+  searchBook.placeholder = hi ? "किताब खोजें..." : "Search for a book...";
+  searchBtn.innerText = hi ? "खोजें" : "Search";
 
-    document.querySelectorAll(".btn")[1].innerText = "खोजें";
+  reqLabel.innerText = hi ? "किताब की रिक्वेस्ट करें" : "Request a Book";
+  requestClass.options[0].text = hi ? "क्लास चुनें" : "Choose class";
+  requestBook.placeholder = hi ? "ज़रूरत वाली किताब" : "Book you need";
+  reqBtn.innerText = hi ? "रिक्वेस्ट भेजें" : "Submit Request";
 
-    document.querySelector("h4").innerText = "किताब की रिक्वेस्ट करें";
-    document.getElementById("requestClass").options[0].text = "क्लास चुनें";
-    document.getElementById("requestBook").placeholder = "ज़रूरत वाली किताब";
-
-    document.querySelectorAll(".donate-btn")[1].innerText = "रिक्वेस्ट भेजें";
-
-    document.getElementById("langStatus").innerText = "Language: Hindi";
-
- 
-  }
-
-  else{
-    // RESET BACK TO ENGLISH
-    document.querySelector("h1").innerText = "BOOKLOOP";
-    document.querySelector(".school").innerText = "S.K.V. VIVEK VIHAR";
-
-    document.querySelector(".subtitle").innerText =
-      "Selling used books, find low-cost textbooks, and help classmates continue learning.";
-
-    document.querySelector(".btn").innerText = "Browse Books";
-    document.querySelector(".ghost").innerText = "How it works";
-
-    document.querySelectorAll(".card h3")[0].innerText = "Quick steps to help";
-    document.querySelectorAll(".card h3")[1].innerText = "Book details";
-
-    document.getElementById("title").placeholder = "Book title";
-    document.getElementById("condition").options[0].text = "New";
-    document.getElementById("condition").options[1].text = "Good";
-    document.getElementById("condition").options[2].text = "Fair";
-    document.getElementById("condition").options[3].text = "Worn";
-
-    document.querySelector(".donate-btn").innerText = "Submit Selling";
-
-    document.querySelectorAll(".card h3")[2].innerText = "Buy Books";
-
-    document.getElementById("buyClass").options[0].text = "Choose class";
-    document.getElementById("searchBook").placeholder = "Search for a book...";
-
-    document.querySelectorAll(".btn")[1].innerText = "Search";
-
-    document.querySelector("h4").innerText = "Request a Book";
-    document.getElementById("requestClass").options[0].text = "Choose class";
-    document.getElementById("requestBook").placeholder = "Book you need";
-
-    document.querySelectorAll(".donate-btn")[1].innerText = "Submit Request";
-
-    document.getElementById("langStatus").innerText = "Language: English";
-
-    }
+  langStatus.innerText = hi ? "Current language: Hindi" : "Current language: English";
 }
-
-
 </script>
 
 </body>
 </html>
+
