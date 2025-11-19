@@ -80,6 +80,12 @@ input,select{
   margin-top:20px;
 }
 
+/* ✅ Mobile-only hide for language section */
+@media (max-width: 600px){
+  .lang-box {
+    display: none !important;
+  }
+}
 </style>
 </head>
 
@@ -207,8 +213,8 @@ function changeLang(){
   step3.innerText = hi ? "कलेक्शन पॉइंट पर दें या पिकअप मांगे" : "Drop them at the collection point or request pickup";
 
   bookDetails.innerText = hi ? "किताब का विवरण" : "Book details";
-
   bookTitle.placeholder = hi ? "किताब का नाम" : "Book title";
+
   bookCondition.options[0].text = hi ? "नई" : "New";
   bookCondition.options[1].text = hi ? "अच्छी" : "Good";
   bookCondition.options[2].text = hi ? "ठीक-ठाक" : "Fair";
@@ -232,6 +238,3 @@ function changeLang(){
 
 </body>
 </html>
-
-
-
