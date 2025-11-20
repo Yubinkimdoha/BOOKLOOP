@@ -4,112 +4,153 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>BOOKLOOP — S.K.V. VIVEK VIHAR</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --main:#003631;
-  --side:#FFEDA8;
-  --accent:#E6F2EF;
-  --light-shadow:0 4px 14px rgba(2,18,16,0.05);
-  --strong-shadow:0 6px 18px rgba(0,0,0,0.12);
-  --border:1px solid rgba(0,0,0,0.06);
-  --text-dark:#062723;
+  --main: #003631;
+  --main-light: #005C53;
+  --side: #FFEDA8;
+  --accent: #e77f24; /* Orange for Requests */
+  --text-dark: #062723;
+  --shadow: 0 10px 30px rgba(0,0,0,0.08);
+  --glass: rgba(255, 255, 255, 0.15);
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
+* { margin:0; padding:0; box-sizing:border-box; transition: all 0.2s ease; }
+
 body{
-  font-family:Inter,system-ui;
-  background:linear-gradient(180deg,var(--accent),#fff);
-  display:flex;justify-content:center;
-  padding:32px 16px;
-  color:var(--text-dark);
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top left, #dbece9, #fff);
+  min-height: 100vh;
+  display:flex; flex-direction: column; align-items: center; 
+  padding: 40px 15px; color: var(--text-dark);
 }
 
 .container{
-  width:100%;max-width:950px;
-  background:white;border-radius:16px;
-  box-shadow:0 8px 30px rgba(2,18,16,0.08);
-  overflow:hidden;display:grid;
+  width:100%; max-width:1000px;
+  background: white; border-radius: 24px;
+  box-shadow: var(--shadow); overflow: hidden; display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
 }
 
+/* LEFT PANEL */
 .main{
-  padding:40px;
-  background:linear-gradient(180deg,var(--main),#01413a 80%);
-  color:var(--side);
+  padding: 50px;
+  background: linear-gradient(135deg, var(--main), #00211e);
+  color: var(--side); display: flex; flex-direction: column; justify-content: center;
 }
+h1 { font-size: 48px; line-height: 1.1; margin: 10px 0; letter-spacing: -1px; }
+#schoolName { opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; font-weight: 600; }
+.subtitle { font-size: 16px; opacity: 0.9; line-height: 1.6; margin-bottom: 30px; max-width: 90%; }
 
-h1{font-size:40px;margin:16px 0 6px}
-.subtitle{max-width:65%;opacity:0.92}
+.btn { padding: 12px 24px; font-weight: 600; border-radius: 50px; border: none; cursor: pointer; font-size: 14px; display:inline-flex; align-items:center; gap:8px; }
+.primary-btn { background: var(--side); color: var(--main); box-shadow: 0 4px 15px rgba(255, 237, 168, 0.3); }
+.primary-btn:hover { transform: translateY(-2px); background: #fff; }
+.ghost-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+.ghost-btn:hover { background: rgba(255,255,255,0.2); }
 
-.btn{
-  padding:12px 18px;font-weight:700;
-  border-radius:10px;border:none;
-  cursor:pointer;
+/* GLASS CARD */
+.glass-card {
+  margin-top: 40px; background: var(--glass);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
 }
-.primary-btn{background:var(--side);color:var(--main)}
-.ghost-btn{background:transparent;color:var(--side);border:2px solid rgba(255,255,255,0.15)}
+.glass-card li { margin-bottom: 8px; margin-left: 20px; font-size: 14px; opacity: 0.9; }
 
-.side{
-  background:var(--side);
-  padding:26px;
-  display:flex;flex-direction:column;gap:18px;
-}
+/* RIGHT PANEL */
+.side{ background: #F9FBF9; padding: 40px; display: flex; flex-direction: column; gap: 20px; }
 
 .card{
-  background:#ffffff44;
-  padding:14px;border-radius:10px;
-  box-shadow:var(--light-shadow);
+  background: #fff; padding: 25px; border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #eee;
 }
+.card h3 { color: var(--main); font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
 
-input,select{
-  width:100%;padding:10px;
-  border-radius:8px;border:var(--border);
+input, select{
+  width: 100%; padding: 12px 15px; border-radius: 8px; border: 2px solid #eee;
+  background: #fcfcfc; font-family: inherit; font-size: 14px; margin-bottom: 10px; outline: none;
 }
+input:focus, select:focus { border-color: var(--main); background: #fff; }
 
 .donate-btn{
-  width:100%;
-  padding:10px;
-  background:var(--main);
-  color:var(--side);
-  border:none;border-radius:10px;
-  font-weight:800;cursor:pointer;
+  width: 100%; padding: 12px; margin-top: 5px; background: var(--main); color: #fff;
+  border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;
 }
+.donate-btn:hover { background: var(--main-light); }
 
+/* --- LISTINGS & TABS AREA --- */
+.listings-area { width: 100%; max-width: 1000px; margin-top: 30px; }
+
+/* TABS */
+.tab-container {
+  display: flex; gap: 10px; margin-bottom: 20px;
+  background: #eef2f2; padding: 5px; border-radius: 12px; width: fit-content;
+}
+.tab-btn {
+  padding: 10px 20px; border: none; background: transparent; 
+  border-radius: 8px; font-weight: 600; color: #666; cursor: pointer;
+}
+.tab-btn.active { background: white; color: var(--main); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+/* GRID */
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+
+.book-item {
+  background: white; padding: 18px; border-radius: 12px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee;
+  display: flex; flex-direction: column; gap: 6px; 
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+@keyframes popIn { from{transform: scale(0.9); opacity:0;} to{transform: scale(1); opacity:1;} }
+
+.book-top { display:flex; justify-content:space-between; align-items:start; margin-bottom:5px; }
+.book-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; background: #eef; color: var(--main); padding: 4px 8px; border-radius: 6px; }
+
+/* REQUEST ITEM STYLING */
+.book-item.request-mode {
+  border: 2px dashed #f0c49e;
+  background: #fffaf5;
+}
+.book-item.request-mode .book-tag { background: #ffe8d6; color: var(--accent); }
+.book-item.request-mode strong { color: var(--accent); }
+
+/* BADGES */
+.badge-new { background: #d4edda; color: #155724; }
+.badge-good { background: #fff3cd; color: #856404; }
+.badge-worn { background: #f8d7da; color: #721c24; }
+
+.action-btn {
+  margin-top: 10px; padding: 8px; font-size: 12px; background: white; 
+  border: 1px solid var(--main); color: var(--main); border-radius: 6px; cursor: pointer; font-weight:600;
+}
+.action-btn:hover { background: var(--main); color: #fff; }
+
+/* Button style for responding to a request */
+.give-btn { border-color: var(--accent); color: var(--accent); }
+.give-btn:hover { background: var(--accent); color: #fff; }
+
+/* TOAST */
+#toast {
+  visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center;
+  border-radius: 50px; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px;
+  transform: translateX(-50%); font-size: 14px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+#toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+@keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+/* LANGUAGE BOX */
 .lang-box{
-  max-width:950px;width:100%;
-  margin-top:20px;
+  max-width: 1000px; width: 100%; margin-top: 20px; background: white; border-radius: 12px;
+  padding: 15px 25px; display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* Mobile-only hide for language section */
-@media (max-width: 600px){
-  .lang-box {
-    display: none !important;
-  }
-}
-
-/* ⭐ Small Floating Language Button */
-.lang-btn-small{
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  background: var(--main);
-  color: var(--side);
-  border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: var(--strong-shadow);
-  font-size: 14px;
-}
-
-@media (max-width:600px){
-  .lang-btn-small{
-    width: 40px;
-    height: 40px;
-    font-size: 12px;
-  }
+@media (max-width: 768px) {
+  .container { grid-template-columns: 1fr; }
+  .main { padding: 40px 20px; text-align: center; }
 }
 </style>
 </head>
@@ -117,158 +158,314 @@ input,select{
 <body>
 
 <div class="container">
-
-  <!-- LEFT PANEL -->
   <main class="main">
-    <h1 id="titleMain">BOOKLOOP</h1>
     <div id="schoolName">S.K.V. VIVEK VIHAR</div>
+    <h1 id="titleMain">BOOKLOOP</h1>
+    <p class="subtitle" id="subtitle">Selling used books, find low-cost textbooks, and help classmates continue learning.</p>
 
-    <p class="subtitle" id="subtitle">
-      Selling used books, find low-cost textbooks, and help classmates continue learning.
-    </p>
-
-    <div style="margin-top:20px;display:flex;gap:12px">
-      <button class="btn primary-btn" id="browseBtn">Browse Books</button>
-      <button class="btn ghost-btn" id="howBtn">How it works</button>
+    <div style="margin-top:10px; display:flex; gap:12px; justify-content: inherit;">
+      <button class="btn primary-btn" onclick="switchTab('books')">Browse Books</button>
+      <button class="btn ghost-btn">How it works</button>
     </div>
 
-    <div class="card" style="margin-top:26px;background:#ffffff22">
-      <h3 id="quickSteps">Quick steps to help</h3>
-      <ol style="margin-left:18px;opacity:0.95">
+    <div class="glass-card">
+      <h3 id="quickSteps">⚡ Quick steps to help</h3>
+      <ol style="opacity:0.95">
         <li id="step1">Choose classes (8th — 12th)</li>
         <li id="step2">List the books and their condition</li>
-        <li id="step3">Drop them at the school collection point or request pickup</li>
+        <li id="step3">Drop them at the school collection point</li>
       </ol>
     </div>
   </main>
 
-  <!-- RIGHT PANEL -->
   <aside class="side">
-
-    <!-- SELL -->
     <div class="card">
-      <h3 id="bookDetails">Book details</h3>
-      <input id="bookTitle" placeholder="Book title">
+      <h3 id="bookDetails">📕 Sell a Book</h3>
+      <input id="bookTitle" placeholder="Book title (e.g. Science NCERT)">
       <select id="bookCondition">
-        <option>New</option><option>Good</option>
-        <option>Fair</option><option>Worn</option>
+        <option value="New">Condition: New</option>
+        <option value="Good">Condition: Good</option>
+        <option value="Fair">Condition: Fair</option>
+        <option value="Worn">Condition: Worn</option>
       </select>
-
+      <select id="sellClass" style="margin-bottom:10px">
+         <option value="12">Class 12</option><option value="11">Class 11</option><option value="10">Class 10</option><option value="9">Class 9</option><option value="8">Class 8</option>
+      </select>
       <button class="donate-btn" onclick="submitDonation()" id="sellBtn">
-        Submit Selling
+        <span>Submit Selling</span> <span>➔</span>
       </button>
     </div>
 
-    <!-- BUY -->
     <div class="card">
-      <h3 id="buyTitle">Buy Books</h3>
-
-      <select id="buyClass">
-        <option value="">Choose class</option>
-        <option>8</option><option>9</option>
-        <option>10</option><option>11</option><option>12</option>
-      </select>
-
-      <input id="searchBook" placeholder="Search for a book...">
-
+      <h3 id="buyTitle">🔍 Find / Request</h3>
+      
+      <div style="display:flex; gap:10px;">
+          <select id="buyClass" style="width:35%"><option value="">Class</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+          <input id="searchBook" placeholder="Search book name...">
+      </div>
       <button class="donate-btn" onclick="searchBook()" id="searchBtn">Search</button>
 
-      <h4 id="reqLabel" style="margin-top:10px;color:var(--main)">Request a Book</h4>
-      <select id="requestClass">
-        <option value="">Choose class</option>
-        <option>8</option><option>9</option>
-        <option>10</option><option>11</option><option>12</option>
-      </select>
-
-      <input id="requestBook" placeholder="Book you need">
-      <button class="donate-btn" onclick="requestBookFn()" id="reqBtn">Submit Request</button>
+      <div style="margin-top:25px; padding-top:20px; border-top:1px dashed #ddd;">
+        <h4 id="reqLabel" style="color:var(--accent); font-size:13px; text-transform:uppercase; font-weight:bold; margin-bottom:10px;">Can't find it? Request it.</h4>
+        <div style="display:flex; gap:10px;">
+          <select id="requestClass" style="width:35%"><option value="">Class</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select>
+          <input id="requestBook" placeholder="Book needed">
+        </div>
+        <button class="donate-btn" onclick="requestBookFn()" id="reqBtn" style="background:var(--accent)">Post Request</button>
+      </div>
     </div>
-
   </aside>
-
 </div>
 
-<!-- LANGUAGE -->
-<div class="card lang-box">
-  <h3>Language</h3>
-  <select id="langSelect" onchange="changeLang()">
-    <option value="en">English</option>
-    <option value="hi">Hindi</option>
-  </select>
-  <p id="langStatus" style="margin-top:6px;color:var(--main)">Current language: English</p>
+<div class="listings-area">
+  
+  <div class="tab-container">
+    <button class="tab-btn active" id="tabBooks" onclick="switchTab('books')">📚 Books Available</button>
+    <button class="tab-btn" id="tabReq" onclick="switchTab('requests')">🙋 Books Wanted</button>
+  </div>
+
+  <div class="book-grid" id="liveFeed">
+    </div>
 </div>
 
-<!-- ⭐ Floating Small Language Button -->
-<button class="lang-btn-small" onclick="toggleLang()">A/आ</button>
+<div class="lang-box">
+  <div style="display:flex; align-items:center; gap:10px;">
+      <h3>🌐 Language</h3>
+      <select id="langSelect" onchange="changeLang()"><option value="en">English</option><option value="hi">Hindi</option></select>
+  </div>
+  <p id="langStatus">Current: English</p>
+</div>
+<div id="toast">Notification Message</div>
 
 <script>
-function submitDonation(){
-  const t = bookTitle.value.trim();
-  if(!t) return alert("Please enter a book title.");
-  alert(`Selling submitted: ${t}`);
+// --- 1. DATABASES ---
+
+// Books People are SELLING
+const booksDB = [
+  { id: 1, title: "Flamingo (English Core)", class: "12", cond: "New", date: "Just now" },
+  { id: 2, title: "Physics Part-I NCERT", class: "12", cond: "Good", date: "1 hr ago" },
+  { id: 3, title: "Science Class X", class: "10", cond: "Worn", date: "2 days ago" },
+  { id: 4, title: "Beehive (English)", class: "9", cond: "Good", date: "3 days ago" },
+];
+
+// Books People are REQUESTING
+const requestsDB = [
+  { id: 101, title: "Mathematics R.D. Sharma", class: "10", date: "Urgent" },
+  { id: 102, title: "Chemistry Part-II", class: "12", date: "Today" },
+  { id: 103, title: "Sanskrit Ruchira", class: "8", date: "Yesterday" }
+];
+
+let currentTab = 'books'; // 'books' or 'requests'
+
+// --- TRANSLATION MAPS ---
+const translations = {
+    en: {
+        title: "BOOKLOOP", subtitle: "Selling used books, find low-cost textbooks, and help classmates continue learning.",
+        browse: "Browse Books", howitworks: "How it works",
+        quickSteps: "⚡ Quick steps to help", step1: "Choose classes (8th — 12th)", step2: "List the books and their condition",
+        step3: "Drop them at the school collection point", sellBook: "📕 Sell a Book",
+        sellTitle: "Book title (e.g. Science NCERT)", condNew: "Condition: New", condGood: "Condition: Good",
+        condFair: "Condition: Fair", condWorn: "Condition: Worn", submitSell: "Submit Selling ➔",
+        findRequest: "🔍 Find / Request", searchPlaceholder: "Search book name...", searchBtn: "Search",
+        reqLabel: "Can't find it? Request it.", reqPlaceholder: "Book needed", postReq: "Post Request ➔",
+        tabAvailable: "📚 Books Available", tabWanted: "🙋 Books Wanted", langStatus: "Current: English",
+        classDefault: "Class",
+        // Toasts
+        toastTitle: "⚠️ Enter title!", toastFields: "⚠️ Fill all fields.",
+        toastReqSent: "Request sent to owner!", toastHaveThis: "Thanks! Connecting you...",
+        toastSearching: "🔍 Searching..."
+    },
+    hi: {
+        title: "बुकलूप", subtitle: "पुरानी किताबें बेचें, कम कीमत में पाठ्यपुस्तकें पाएं और सहपाठियों की मदद करें।",
+        browse: "किताबें देखें", howitworks: "यह कैसे काम करता है",
+        quickSteps: "⚡ त्वरित सहायता चरण", step1: "कक्षा चुनें (8वीं — 12वीं)", step2: "किताबें और उनकी स्थिति सूचीबद्ध करें",
+        step3: "उन्हें स्कूल संग्रह बिंदु पर जमा करें", sellBook: "📕 एक किताब बेचें",
+        sellTitle: "किताब का नाम (उदा. विज्ञान NCERT)", condNew: "स्थिति: नई", condGood: "स्थिति: अच्छी",
+        condFair: "स्थिति: सामान्य", condWorn: "स्थिति: पुरानी", submitSell: "बेचने के लिए सबमिट करें ➔",
+        findRequest: "🔍 खोजें / अनुरोध करें", searchPlaceholder: "किताब का नाम खोजें...", searchBtn: "खोजें",
+        reqLabel: "किताब नहीं मिली? अनुरोध करें।", reqPlaceholder: "आवश्यक किताब", postReq: "अनुरोध पोस्ट करें ➔",
+        tabAvailable: "📚 उपलब्ध किताबें", tabWanted: "🙋 मांगी गई किताबें", langStatus: "Current: Hindi",
+        classDefault: "कक्षा",
+        // Toasts
+        toastTitle: "⚠️ शीर्षक दर्ज करें!", toastFields: "⚠️ सभी फ़ील्ड भरें।",
+        toastReqSent: "मालिक को अनुरोध भेजा गया!", toastHaveThis: "धन्यवाद! आपको जोड़ा जा रहा है...",
+        toastSearching: "🔍 खोजा जा रहा है..."
+    }
+};
+
+// Initialize
+window.onload = () => {
+    // Ensure all select boxes have class options (already done in HTML, but good practice)
+    renderFeed();
+    changeLang(); // Run once to set initial state/translations if needed
+};
+
+// --- 2. SWITCH TABS ---
+function switchTab(tab) {
+  currentTab = tab;
+  
+  // Update Buttons
+  document.getElementById('tabBooks').className = tab === 'books' ? 'tab-btn active' : 'tab-btn';
+  document.getElementById('tabReq').className = tab === 'requests' ? 'tab-btn active' : 'tab-btn';
+
+  renderFeed();
 }
 
-function searchBook(){
-  if(!buyClass.value) return alert("Select a class.");
-  if(!searchBook.value.trim()) return alert("Enter book name.");
-  alert(`Searching for "${searchBook.value}" for Class ${buyClass.value}`);
+// --- 3. RENDER FUNCTION ---
+function renderFeed(filterList = null) {
+  const feed = document.getElementById('liveFeed');
+  feed.innerHTML = "";
+  
+  // Decide which list to show
+  let data = filterList || (currentTab === 'books' ? booksDB : requestsDB);
+  const lang = document.getElementById('langSelect').value;
+  const t = translations[lang];
+
+  if(data.length === 0) {
+    feed.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#999; padding:20px;">Empty List</p>`;
+    return;
+  }
+
+  data.forEach(item => {
+    if(currentTab === 'books') {
+      // RENDER BOOK CARD
+      feed.innerHTML += `
+        <div class="book-item">
+          <div class="book-top">
+            <div class="book-tag">${t.classDefault} ${item.class}</div>
+            <small style="color:#999; font-size:11px;">${item.date}</small>
+          </div>
+          <strong style="font-size:15px; color:var(--main)">${item.title}</strong>
+          <span class="badge-${item.cond.toLowerCase()}" style="font-size:12px; padding:2px 6px; border-radius:4px; width:fit-content;">${item.cond}</span>
+          <button class="action-btn" onclick="showToast('${t.toastReqSent}')">Request / Contact</button>
+        </div>`;
+    } else {
+      // RENDER REQUEST CARD (Different Style)
+      feed.innerHTML += `
+        <div class="book-item request-mode">
+          <div class="book-top">
+            <div class="book-tag">${t.classDefault} ${item.class}</div>
+            <small style="color:#c47c48; font-size:11px;">${item.date}</small>
+          </div>
+          <strong style="font-size:15px;">${item.title}</strong>
+          <span style="font-size:12px; color:#c47c48;">User needs this</span>
+          <button class="action-btn give-btn" onclick="showToast('${t.toastHaveThis}')">🙌 I Have This!</button>
+        </div>`;
+    }
+  });
+}
+
+// --- 4. ACTIONS ---
+
+function submitDonation(){
+  const t = document.getElementById('bookTitle').value.trim();
+  const c = document.getElementById('bookCondition').value;
+  const cl = document.getElementById('sellClass').value;
+  const lang = document.getElementById('langSelect').value;
+  const trans = translations[lang];
+  
+  if(!t) return showToast(trans.toastTitle, "#d9534f");
+
+  booksDB.unshift({ id: Date.now(), title: t, class: cl, cond: c, date: "Just now" });
+  showToast(`✅ Listed: ${t}`, "#003631");
+  document.getElementById('bookTitle').value = "";
+  
+  switchTab('books'); // Auto switch to books tab
 }
 
 function requestBookFn(){
-  if(!requestClass.value || !requestBook.value.trim())
-    return alert("Fill all fields.");
-  alert(`Request submitted: "${requestBook.value}" for Class ${requestClass.value}`);
-  requestBook.value = "";
-  requestClass.value = "";
+  const cl = document.getElementById('requestClass').value;
+  const t = document.getElementById('requestBook').value.trim();
+  const lang = document.getElementById('langSelect').value;
+  const trans = translations[lang];
+
+  if(!cl || !t) return showToast(trans.toastFields, "#d9534f");
+
+  requestsDB.unshift({ id: Date.now(), title: t, class: cl, date: "Just Now" });
+  showToast(`🙋 Request Posted: ${t}`, "#e77f24");
+  document.getElementById('requestBook').value = "";
+  
+  switchTab('requests'); // Auto switch to see your request
 }
 
+function searchBook(){
+  const cls = document.getElementById('buyClass').value;
+  const term = document.getElementById('searchBook').value.trim().toLowerCase();
+  const lang = document.getElementById('langSelect').value;
+  const trans = translations[lang];
+  
+  showToast(trans.toastSearching);
+
+  // Search in CURRENT tab only
+  const db = currentTab === 'books' ? booksDB : requestsDB;
+  
+  const results = db.filter(item => {
+    const matchClass = cls ? item.class === cls : true;
+    const matchName = term ? item.title.toLowerCase().includes(term) : true;
+    return matchClass && matchName;
+  });
+
+  renderFeed(results);
+}
+
+// --- 5. TRANSLATOR ---
 function changeLang(){
-  const hi = langSelect.value === "hi";
+  const lang = document.getElementById('langSelect').value;
+  const t = translations[lang];
 
-  titleMain.innerText = hi ? "बुकलूप" : "BOOKLOOP";
-  schoolName.innerText = hi ? "एस.के.वी. विवेक विहार" : "S.K.V. VIVEK VIHAR";
+  // 1. Hero Section
+  document.getElementById("titleMain").innerText = t.title;
+  document.getElementById("subtitle").innerText = t.subtitle;
+  
+  // Update action buttons (Browse/How it works)
+  document.querySelector(".primary-btn").innerHTML = `${t.browse}`; // Simplified innerHTML for demo
+  document.querySelector(".ghost-btn").innerText = t.howitworks;
+  
+  document.getElementById("quickSteps").innerText = t.quickSteps;
+  document.getElementById("step1").innerText = t.step1;
+  document.getElementById("step2").innerText = t.step2;
+  document.getElementById("step3").innerText = t.step3;
 
-  subtitle.innerText = hi
-    ? "पुरानी किताबें बेचें, कम कीमत में किताबें पाएं और अपने सहपाठियों की मदद करें।"
-    : "Selling used books, find low-cost textbooks, and help classmates continue learning.";
+  // 2. Sell Form
+  document.getElementById("bookDetails").innerText = t.sellBook;
+  document.getElementById("bookTitle").placeholder = t.sellTitle;
+  document.getElementById("sellBtn").innerHTML = `<span>${t.submitSell.split(' ➔')[0]}</span> <span>➔</span>`;
+  
+  // Update Condition Options
+  document.querySelector('#bookCondition option[value="New"]').innerText = t.condNew;
+  document.querySelector('#bookCondition option[value="Good"]').innerText = t.condGood;
+  document.querySelector('#bookCondition option[value="Fair"]').innerText = t.condFair;
+  document.querySelector('#bookCondition option[value="Worn"]').innerText = t.condWorn;
+  
+  // 3. Find/Request Form
+  document.getElementById("buyTitle").innerText = t.findRequest;
+  document.getElementById("searchBook").placeholder = t.searchPlaceholder;
+  document.getElementById("searchBtn").innerText = t.searchBtn;
+  document.getElementById("reqLabel").innerText = t.reqLabel;
+  document.getElementById("requestBook").placeholder = t.reqPlaceholder;
+  document.getElementById("reqBtn").innerHTML = `<span>${t.postReq.split(' ➔')[0]}</span> <span>➔</span>`;
 
-  browseBtn.innerText = hi ? "किताबें देखें" : "Browse Books";
-  howBtn.innerText = hi ? "यह कैसे काम करता है" : "How it works";
+  // 4. Listing Tabs
+  document.getElementById("tabBooks").innerText = t.tabAvailable;
+  document.getElementById("tabReq").innerText = t.tabWanted;
 
-  quickSteps.innerText = hi ? "मदद करने के त्वरित चरण" : "Quick steps to help";
-  step1.innerText = hi ? "क्लास चुनें (8 — 12)" : "Choose classes (8th — 12th)";
-  step2.innerText = hi ? "किताबें और उनकी स्थिति लिखें" : "List the books and their condition";
-  step3.innerText = hi ? "कलेक्शन पॉइंट पर दें या पिकअप मांगे" : "Drop them at the collection point or request pickup";
+  // 5. Language Status
+  document.getElementById("langStatus").innerText = t.langStatus;
+  
+  // 6. Update Class Dropdown defaults (e.g., 'Class')
+  document.getElementById("buyClass").querySelector('option[value=""]').innerText = t.classDefault;
+  document.getElementById("requestClass").querySelector('option[value=""]').innerText = t.classDefault;
 
-  bookDetails.innerText = hi ? "किताब का विवरण" : "Book details";
-  bookTitle.placeholder = hi ? "किताब का नाम" : "Book title";
-
-  bookCondition.options[0].text = hi ? "नई" : "New";
-  bookCondition.options[1].text = hi ? "अच्छी" : "Good";
-  bookCondition.options[2].text = hi ? "ठीक-ठाक" : "Fair";
-  bookCondition.options[3].text = hi ? "पुरानी" : "Worn";
-
-  sellBtn.innerText = hi ? "बेचने के लिए जमा करें" : "Submit Selling";
-
-  buyTitle.innerText = hi ? "किताब खरीदें" : "Buy Books";
-  buyClass.options[0].text = hi ? "क्लास चुनें" : "Choose class";
-  searchBook.placeholder = hi ? "किताब खोजें..." : "Search for a book...";
-  searchBtn.innerText = hi ? "खोजें" : "Search";
-
-  reqLabel.innerText = hi ? "किताब की रिक्वेस्ट करें" : "Request a Book";
-  requestClass.options[0].text = hi ? "क्लास चुनें" : "Choose class";
-  requestBook.placeholder = hi ? "ज़रूरत वाली किताब" : "Book you need";
-  reqBtn.innerText = hi ? "रिक्वेस्ट भेजें" : "Submit Request";
-
-  langStatus.innerText = hi ? "Current language: Hindi" : "Current language: English";
+  // Re-render feed to apply translated text in the book cards if necessary (like Class/User needs this text)
+  renderFeed();
 }
 
-/* ⭐ Small button toggle function */
-function toggleLang(){
-  langSelect.value = langSelect.value === "en" ? "hi" : "en";
-  changeLang();
+// --- UTILS ---
+function showToast(message, color = "#333") {
+  const x = document.getElementById("toast");
+  x.innerText = message;
+  x.style.background = color;
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 </script>
-
-</body>
-</html>
