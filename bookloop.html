@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* --- ROOT VARIABLES --- */
 :root{
   --main: #003631;
   --main-light: #005C53;
@@ -15,15 +16,21 @@
   --text-dark: #062723;
   --shadow: 0 10px 30px rgba(0,0,0,0.08);
   --glass: rgba(255, 255, 255, 0.15);
+  /* New Condition Colors - using better names */
+  --cond-new: #d4edda; --cond-new-text: #155724;
+  --cond-good: #fff3cd; --cond-good-text: #856404;
+  --cond-fair: #f8d7da; --cond-fair-text: #721c24; 
+  --cond-worn: #f8d7da; --cond-worn-text: #721c24; 
 }
 
+/* --- BASE STYLES --- */
 * { margin:0; padding:0; box-sizing:border-box; transition: all 0.2s ease; }
 
 body{
   font-family: 'Poppins', sans-serif;
   background: radial-gradient(circle at top left, #dbece9, #fff);
   min-height: 100vh;
-  display:flex; flex-direction: column; align-items: center; 
+  display:flex; flex-direction: column; align-items: center;  
   padding: 40px 15px; color: var(--text-dark);
 }
 
@@ -34,7 +41,7 @@ body{
   grid-template-columns: 1.1fr 0.9fr;
 }
 
-/* LEFT PANEL */
+/* --- LEFT PANEL (MAIN) --- */
 .main{
   padding: 50px;
   background: linear-gradient(135deg, var(--main), #00211e);
@@ -44,21 +51,23 @@ h1 { font-size: 48px; line-height: 1.1; margin: 10px 0; letter-spacing: -1px; }
 #schoolName { opacity: 0.8; letter-spacing: 1px; text-transform: uppercase; font-size: 13px; font-weight: 600; }
 .subtitle { font-size: 16px; opacity: 0.9; line-height: 1.6; margin-bottom: 30px; max-width: 90%; }
 
-.btn { padding: 12px 24px; font-weight: 600; border-radius: 50px; border: none; cursor: pointer; font-size: 14px; display:inline-flex; align-items:center; gap:8px; }
+/* Buttons */
+.btn { padding: 12px 24px; font-weight: 600; border-radius: 50px; border: none; cursor: pointer; font-size: 14px; display:inline-flex; align-items:center; gap:8px; transition: transform 0.2s ease, background 0.2s ease; }
 .primary-btn { background: var(--side); color: var(--main); box-shadow: 0 4px 15px rgba(255, 237, 168, 0.3); }
 .primary-btn:hover { transform: translateY(-2px); background: #fff; }
 .ghost-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
 .ghost-btn:hover { background: rgba(255,255,255,0.2); }
 
-/* GLASS CARD */
+/* Glass Card */
 .glass-card {
   margin-top: 40px; background: var(--glass);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
 }
-.glass-card li { margin-bottom: 8px; margin-left: 20px; font-size: 14px; opacity: 0.9; }
+.glass-card ol { list-style: decimal inside; }
+.glass-card li { margin-bottom: 8px; margin-left: 0; font-size: 14px; opacity: 0.9; }
 
-/* RIGHT PANEL */
+/* --- RIGHT PANEL (SIDE) --- */
 .side{ background: #F9FBF9; padding: 40px; display: flex; flex-direction: column; gap: 20px; }
 
 .card{
@@ -69,15 +78,25 @@ h1 { font-size: 48px; line-height: 1.1; margin: 10px 0; letter-spacing: -1px; }
 
 input, select{
   width: 100%; padding: 12px 15px; border-radius: 8px; border: 2px solid #eee;
-  background: #fcfcfc; font-family: inherit; font-size: 14px; margin-bottom: 10px; outline: none;
+  background: #fcfcfc; font-family: inherit; font-size: 14px; margin-bottom: 10px; outline: none; transition: border-color 0.2s ease, background 0.2s ease;
 }
 input:focus, select:focus { border-color: var(--main); background: #fff; }
 
-.donate-btn{
-  width: 100%; padding: 12px; margin-top: 5px; background: var(--main); color: #fff;
-  border: none; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;
+/* Donation/Form Submit Button */
+.submit-btn{ 
+  width: 100%; padding: 12px; margin-top: 5px; border: none; border-radius: 8px; 
+  font-weight: 600; cursor: pointer; display: flex; justify-content: center; 
+  align-items: center; gap: 8px; transition: background 0.2s ease;
 }
-.donate-btn:hover { background: var(--main-light); }
+.submit-btn-primary { 
+  background: var(--main); color: #fff; 
+}
+.submit-btn-primary:hover { background: var(--main-light); }
+.submit-btn-accent { 
+  background: var(--accent); color: #fff;
+}
+.submit-btn-accent:hover { background: #d3731f; }
+
 
 /* --- LISTINGS & TABS AREA --- */
 .listings-area { width: 100%; max-width: 1000px; margin-top: 30px; }
@@ -88,18 +107,19 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
   background: #eef2f2; padding: 5px; border-radius: 12px; width: fit-content;
 }
 .tab-btn {
-  padding: 10px 20px; border: none; background: transparent; 
-  border-radius: 8px; font-weight: 600; color: #666; cursor: pointer;
+  padding: 10px 20px; border: none; background: transparent;  
+  border-radius: 8px; font-weight: 600; color: #666; cursor: pointer; transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 }
 .tab-btn.active { background: white; color: var(--main); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
 /* GRID */
 .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
 
+/* Book Item Base */
 .book-item {
-  background: white; padding: 18px; border-radius: 12px; 
+  background: white; padding: 18px; border-radius: 12px;  
   box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee;
-  display: flex; flex-direction: column; gap: 6px; 
+  display: flex; flex-direction: column; gap: 6px;  
   animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
 }
@@ -107,6 +127,13 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
 
 .book-top { display:flex; justify-content:space-between; align-items:start; margin-bottom:5px; }
 .book-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; background: #eef; color: var(--main); padding: 4px 8px; border-radius: 6px; }
+.book-title { font-size:15px; color:var(--main); } 
+
+/* Condition Badges */
+.book-condition { font-size:12px; padding:2px 6px; border-radius:4px; width:fit-content; }
+.cond-New { background: var(--cond-new); color: var(--cond-new-text); }
+.cond-Good { background: var(--cond-good); color: var(--cond-good-text); }
+.cond-Fair, .cond-Worn { background: var(--cond-worn); color: var(--cond-worn-text); } 
 
 /* REQUEST ITEM STYLING */
 .book-item.request-mode {
@@ -114,16 +141,12 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
   background: #fffaf5;
 }
 .book-item.request-mode .book-tag { background: #ffe8d6; color: var(--accent); }
-.book-item.request-mode strong { color: var(--accent); }
+.book-item.request-mode .book-title { color: var(--accent); } 
 
-/* BADGES */
-.badge-new { background: #d4edda; color: #155724; }
-.badge-good { background: #fff3cd; color: #856404; }
-.badge-worn { background: #f8d7da; color: #721c24; }
-
+/* Action Button */
 .action-btn {
-  margin-top: 10px; padding: 8px; font-size: 12px; background: white; 
-  border: 1px solid var(--main); color: var(--main); border-radius: 6px; cursor: pointer; font-weight:600;
+  margin-top: 10px; padding: 8px; font-size: 12px; background: white;  
+  border: 1px solid var(--main); color: var(--main); border-radius: 6px; cursor: pointer; font-weight:600; transition: background 0.2s ease, color 0.2s ease; 
 }
 .action-btn:hover { background: var(--main); color: #fff; }
 
@@ -131,7 +154,7 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
 .give-btn { border-color: var(--accent); color: var(--accent); }
 .give-btn:hover { background: var(--accent); color: #fff; }
 
-/* TOAST */
+/* --- TOAST NOTIFICATIONS --- */
 #toast {
   visibility: hidden; min-width: 250px; background-color: #333; color: #fff; text-align: center;
   border-radius: 50px; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px;
@@ -141,22 +164,123 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
 @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
 @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-/* LANGUAGE BOX */
-.lang-box{
-  max-width: 1000px; width: 100%; margin-top: 20px; background: white; border-radius: 12px;
-  padding: 15px 25px; display: flex; align-items: center; justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+/* --- MODAL STYLES (for How it works) --- */
+#howItWorksModal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; 
+    justify-content: center; align-items: center;
+    z-index: 200;
+    backdrop-filter: blur(5px);
+}
+#howItWorksModal.show-modal {
+    display: flex;
+}
+.modal-content {
+    background: white; border-radius: 16px; padding: 30px;
+    max-width: 500px; width: 90%;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: fadeInScale 0.3s ease-out;
+}
+@keyframes fadeInScale { from {opacity: 0; transform: scale(0.95);} to {opacity: 1; transform: scale(1);} }
+.modal-close {
+    position: absolute; top: 15px; right: 15px;
+    font-size: 24px; font-weight: 300; line-height: 1;
+    cursor: pointer; border: none; background: none;
+    color: #999;
+}
+.modal-content h2 { color: var(--main); margin-bottom: 15px; font-size: 24px; }
+.modal-content p { margin-bottom: 10px; font-size: 14px; line-height: 1.5; }
+.modal-content ul { padding-left: 20px; margin-bottom: 20px; }
+.modal-content li { font-size: 14px; margin-bottom: 5px; }
+
+/* --- LANGUAGE ICON (NEW POSITION) --- */
+#top-right-lang {
+    position: absolute; /* Relative to the body or nearest positioned ancestor, but since body is centered, we use absolute positioning in the top right */
+    top: 40px; /* Aligned with top padding of body */
+    right: 20px; /* Space from the right edge */
+    z-index: 50; /* Above the main container */
 }
 
+/* Language Icon Styling */
+.lang-icon-container {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding for click area */
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.lang-icon {
+    font-size: 20px; 
+    color: var(--main);
+}
+/* New Dropdown styles */
+.lang-dropdown {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    overflow: hidden;
+    margin-top: 5px;
+    z-index: 10;
+    display: none; 
+}
+.lang-dropdown.show {
+    display: block;
+}
+.lang-dropdown a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 500;
+}
+.lang-dropdown a:hover {
+    background: #f0f0f0;
+}
+.lang-dropdown a.active-lang {
+    background: var(--main-light);
+    color: white;
+    pointer-events: none; 
+}
+
+/* Hide the Language Status, as it's no longer a 'box' at the bottom */
+#langStatus { display: none; } 
+
+/* Media Query to adjust position on smaller screens */
 @media (max-width: 768px) {
   .container { grid-template-columns: 1fr; }
   .main { padding: 40px 20px; text-align: center; }
+  .glass-card li { text-align: left; } 
+  .main > div:nth-child(4) { justify-content: center !important; } 
+
+  #top-right-lang {
+    top: 15px; /* Adjust closer to the edge */
+    right: 15px; 
+  }
 }
 </style>
 </head>
 
 <body>
 
+<div id="top-right-lang">
+    <div class="lang-icon-container" onclick="toggleLangDropdown(event)">
+        <span class="lang-icon">🌐</span>
+        <div id="langDropdown" class="lang-dropdown">
+            <a href="#" data-lang="en">English</a>
+            <a href="#" data-lang="hi">Hindi</a>
+        </div>
+    </div>
+</div>
 <div class="container">
   <main class="main">
     <div id="schoolName">S.K.V. VIVEK VIHAR</div>
@@ -165,7 +289,7 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
 
     <div style="margin-top:10px; display:flex; gap:12px; justify-content: inherit;">
       <button class="btn primary-btn" onclick="switchTab('books')">Browse Books</button>
-      <button class="btn ghost-btn">How it works</button>
+      <button class="btn ghost-btn" id="howItWorksBtn" onclick="showHowItWorksModal()">How it works</button>
     </div>
 
     <div class="glass-card">
@@ -188,10 +312,10 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
         <option value="Fair">Condition: Fair</option>
         <option value="Worn">Condition: Worn</option>
       </select>
-      <select id="sellClass" style="margin-bottom:10px">
-         <option value="12">Class 12</option><option value="11">Class 11</option><option value="10">Class 10</option><option value="9">Class 9</option><option value="8">Class 8</option>
+      <select id="sellClass">
+        <option value="12">Class 12</option><option value="11">Class 11</option><option value="10">Class 10</option><option value="9">Class 9</option><option value="8">Class 8</option>
       </select>
-      <button class="donate-btn" onclick="submitDonation()" id="sellBtn">
+      <button class="submit-btn submit-btn-primary" onclick="submitDonation()" id="sellBtn">
         <span>Submit Selling</span> <span>➔</span>
       </button>
     </div>
@@ -200,18 +324,20 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
       <h3 id="buyTitle">🔍 Find / Request</h3>
       
       <div style="display:flex; gap:10px;">
-          <select id="buyClass" style="width:35%"><option value="">Class</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
-          <input id="searchBook" placeholder="Search book name...">
+        <select id="buyClass" style="width:35%"><option value="">Class</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+        <input id="searchBook" placeholder="Search book name...">
       </div>
-      <button class="donate-btn" onclick="searchBook()" id="searchBtn">Search</button>
+      <button class="submit-btn submit-btn-primary" onclick="searchBook()" id="searchBtn">Search</button>
 
       <div style="margin-top:25px; padding-top:20px; border-top:1px dashed #ddd;">
         <h4 id="reqLabel" style="color:var(--accent); font-size:13px; text-transform:uppercase; font-weight:bold; margin-bottom:10px;">Can't find it? Request it.</h4>
         <div style="display:flex; gap:10px;">
-          <select id="requestClass" style="width:35%"><option value="">Class</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select>
+          <select id="requestClass" style="width:35%"><option value="">Class</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
           <input id="requestBook" placeholder="Book needed">
         </div>
-        <button class="donate-btn" onclick="requestBookFn()" id="reqBtn" style="background:var(--accent)">Post Request</button>
+        <button class="submit-btn submit-btn-accent" onclick="requestBookFn()" id="reqBtn">
+          <span>Post Request</span> <span>➔</span>
+        </button>
       </div>
     </div>
   </aside>
@@ -225,22 +351,38 @@ input:focus, select:focus { border-color: var(--main); background: #fff; }
   </div>
 
   <div class="book-grid" id="liveFeed">
+  </div>
+</div>
+
+<p id="langStatus" style="padding-top:10px; color:#999; font-size:12px;">Current: English</p>
+<div id="toast">Notification Message</div>
+
+<div id="howItWorksModal" onclick="closeHowItWorksModal(event)">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeHowItWorksModal()">✖</button>
+        <h2 id="modalTitle">How BOOKLOOP Works</h2>
+        <p>BookLoop helps students share and find used textbooks easily within the school community.</p>
+
+        <h3 style="color:var(--main); margin-top:15px; font-size:16px;">📚 For Sellers/Donors:</h3>
+        <ul id="sellerSteps">
+            <li>**List It:** Use the "Sell a Book" section to list your textbook (Title, Class, Condition).</li>
+            <li>**Wait for Contact:** Interested students will request the book via the app. You will receive a notification.</li>
+            <li>**Drop Off:** Once a match is made, drop the book at the designated school collection point (e.g., Library).</li>
+        </ul>
+
+        <h3 style="color:var(--main); font-size:16px;">🔍 For Buyers:</h3>
+        <ul id="buyerSteps">
+            <li>**Browse/Search:** Check the "Books Available" tab and use the search bar to find books.</li>
+            <li>**Request:** If available, click "Request / Contact" to notify the seller.</li>
+            <li>**Post a Request:** If you can't find a book, post a request in the "Books Wanted" tab.</li>
+        </ul>
+        <p style="margin-top:20px;">All transactions and handovers happen securely through the school's **BookLoop Coordinator**.</p>
     </div>
 </div>
 
-<div class="lang-box">
-  <div style="display:flex; align-items:center; gap:10px;">
-      <h3>🌐 Language</h3>
-      <select id="langSelect" onchange="changeLang()"><option value="en">English</option><option value="hi">Hindi</option></select>
-  </div>
-  <p id="langStatus">Current: English</p>
-</div>
-<div id="toast">Notification Message</div>
 
 <script>
 // --- 1. DATABASES ---
-
-// Books People are SELLING
 const booksDB = [
   { id: 1, title: "Flamingo (English Core)", class: "12", cond: "New", date: "Just now" },
   { id: 2, title: "Physics Part-I NCERT", class: "12", cond: "Good", date: "1 hr ago" },
@@ -248,14 +390,14 @@ const booksDB = [
   { id: 4, title: "Beehive (English)", class: "9", cond: "Good", date: "3 days ago" },
 ];
 
-// Books People are REQUESTING
 const requestsDB = [
   { id: 101, title: "Mathematics R.D. Sharma", class: "10", date: "Urgent" },
   { id: 102, title: "Chemistry Part-II", class: "12", date: "Today" },
   { id: 103, title: "Sanskrit Ruchira", class: "8", date: "Yesterday" }
 ];
 
-let currentTab = 'books'; // 'books' or 'requests'
+let currentTab = 'books'; 
+let currentLang = 'en'; // Track current language
 
 // --- TRANSLATION MAPS ---
 const translations = {
@@ -273,7 +415,22 @@ const translations = {
         // Toasts
         toastTitle: "⚠️ Enter title!", toastFields: "⚠️ Fill all fields.",
         toastReqSent: "Request sent to owner!", toastHaveThis: "Thanks! Connecting you...",
-        toastSearching: "🔍 Searching..."
+        toastSearching: "🔍 Searching...",
+        // Modal Text
+        modalTitle: "How BOOKLOOP Works", 
+        sellerTitle: "📚 For Sellers/Donors:", 
+        buyerTitle: "🔍 For Buyers:",
+        sellerSteps: [
+            "**List It:** Use the \"Sell a Book\" section to list your textbook (Title, Class, Condition).",
+            "**Wait for Contact:** Interested students will request the book via the app. You will receive a notification.",
+            "**Drop Off:** Once a match is made, drop the book at the designated school collection point (e.g., Library)."
+        ],
+        buyerSteps: [
+            "**Browse/Search:** Check the \"Books Available\" tab and use the search bar to find books.",
+            "**Request:** If available, click \"Request / Contact\" to notify the seller.",
+            "**Post a Request:** If you can't find a book, post a request in the \"Books Wanted\" tab."
+        ],
+        modalFooter: "All transactions and handovers happen securely through the school's **BookLoop Coordinator**."
     },
     hi: {
         title: "बुकलूप", subtitle: "पुरानी किताबें बेचें, कम कीमत में पाठ्यपुस्तकें पाएं और सहपाठियों की मदद करें।",
@@ -289,37 +446,57 @@ const translations = {
         // Toasts
         toastTitle: "⚠️ शीर्षक दर्ज करें!", toastFields: "⚠️ सभी फ़ील्ड भरें।",
         toastReqSent: "मालिक को अनुरोध भेजा गया!", toastHaveThis: "धन्यवाद! आपको जोड़ा जा रहा है...",
-        toastSearching: "🔍 खोजा जा रहा है..."
+        toastSearching: "🔍 खोजा जा रहा है...",
+        // Modal Text
+        modalTitle: "बुकलूप कैसे काम करता है",
+        sellerTitle: "📚 विक्रेताओं/दानकर्ताओं के लिए:",
+        buyerTitle: "🔍 खरीदारों के लिए:",
+        sellerSteps: [
+            "**सूचीबद्ध करें:** अपनी पाठ्यपुस्तक (शीर्षक, कक्षा, स्थिति) को सूचीबद्ध करने के लिए \"एक किताब बेचें\" अनुभाग का उपयोग करें।",
+            "**संपर्क की प्रतीक्षा करें:** इच्छुक छात्र ऐप के माध्यम से किताब का अनुरोध करेंगे। आपको एक सूचना प्राप्त होगी।",
+            "**जमा करें:** एक बार मैच हो जाने पर, किताब को स्कूल के निर्धारित संग्रह बिंदु (जैसे पुस्तकालय) पर जमा करें।"
+        ],
+        buyerSteps: [
+            "**ब्राउज़/खोजें:** \"उपलब्ध किताबें\" टैब देखें और किताबें खोजने के लिए खोज बार का उपयोग करें।",
+            "**अनुरोध करें:** यदि उपलब्ध हो, तो विक्रेता को सूचित करने के लिए \"अनुरोध/संपर्क करें\" पर क्लिक करें।",
+            "**Post an Request:** यदि आपको कोई किताब नहीं मिल रही है, तो \"मांगी गई किताबें\" टैब में एक अनुरोध पोस्ट करें।"
+        ],
+        modalFooter: "All transactions and handovers happen securely through the school's **BookLoop Coordinator**."
     }
 };
 
 // Initialize
 window.onload = () => {
-    // Ensure all select boxes have class options (already done in HTML, but good practice)
-    renderFeed();
-    changeLang(); // Run once to set initial state/translations if needed
+    // Attach event listeners to language links
+    document.querySelectorAll('#langDropdown a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            changeLang(e.target.dataset.lang);
+            document.getElementById('langDropdown').classList.remove('show'); // Close dropdown after selection
+        });
+    });
+    
+    // Initial language setup (defaults to 'en')
+    changeLang(currentLang); 
 };
 
 // --- 2. SWITCH TABS ---
 function switchTab(tab) {
   currentTab = tab;
   
-  // Update Buttons
   document.getElementById('tabBooks').className = tab === 'books' ? 'tab-btn active' : 'tab-btn';
   document.getElementById('tabReq').className = tab === 'requests' ? 'tab-btn active' : 'tab-btn';
 
   renderFeed();
 }
 
-// --- 3. RENDER FUNCTION ---
+// --- 3. RENDER FUNCTION (Unchanged) ---
 function renderFeed(filterList = null) {
   const feed = document.getElementById('liveFeed');
   feed.innerHTML = "";
   
-  // Decide which list to show
   let data = filterList || (currentTab === 'books' ? booksDB : requestsDB);
-  const lang = document.getElementById('langSelect').value;
-  const t = translations[lang];
+  const t = translations[currentLang];
 
   if(data.length === 0) {
     feed.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:#999; padding:20px;">Empty List</p>`;
@@ -328,26 +505,24 @@ function renderFeed(filterList = null) {
 
   data.forEach(item => {
     if(currentTab === 'books') {
-      // RENDER BOOK CARD
       feed.innerHTML += `
         <div class="book-item">
           <div class="book-top">
             <div class="book-tag">${t.classDefault} ${item.class}</div>
             <small style="color:#999; font-size:11px;">${item.date}</small>
           </div>
-          <strong style="font-size:15px; color:var(--main)">${item.title}</strong>
-          <span class="badge-${item.cond.toLowerCase()}" style="font-size:12px; padding:2px 6px; border-radius:4px; width:fit-content;">${item.cond}</span>
+          <strong class="book-title">${item.title}</strong>
+          <span class="book-condition cond-${item.cond}">${item.cond}</span>
           <button class="action-btn" onclick="showToast('${t.toastReqSent}')">Request / Contact</button>
         </div>`;
     } else {
-      // RENDER REQUEST CARD (Different Style)
       feed.innerHTML += `
         <div class="book-item request-mode">
           <div class="book-top">
             <div class="book-tag">${t.classDefault} ${item.class}</div>
             <small style="color:#c47c48; font-size:11px;">${item.date}</small>
           </div>
-          <strong style="font-size:15px;">${item.title}</strong>
+          <strong class="book-title">${item.title}</strong>
           <span style="font-size:12px; color:#c47c48;">User needs this</span>
           <button class="action-btn give-btn" onclick="showToast('${t.toastHaveThis}')">🙌 I Have This!</button>
         </div>`;
@@ -355,29 +530,27 @@ function renderFeed(filterList = null) {
   });
 }
 
-// --- 4. ACTIONS ---
+// --- 4. ACTIONS (Unchanged) ---
 
 function submitDonation(){
   const t = document.getElementById('bookTitle').value.trim();
   const c = document.getElementById('bookCondition').value;
   const cl = document.getElementById('sellClass').value;
-  const lang = document.getElementById('langSelect').value;
-  const trans = translations[lang];
+  const trans = translations[currentLang];
   
-  if(!t) return showToast(trans.toastTitle, "#d9534f");
+  if(!t || !c || !cl) return showToast(trans.toastFields, "#d9534f");
 
   booksDB.unshift({ id: Date.now(), title: t, class: cl, cond: c, date: "Just now" });
   showToast(`✅ Listed: ${t}`, "#003631");
   document.getElementById('bookTitle').value = "";
   
-  switchTab('books'); // Auto switch to books tab
+  switchTab('books'); 
 }
 
 function requestBookFn(){
   const cl = document.getElementById('requestClass').value;
   const t = document.getElementById('requestBook').value.trim();
-  const lang = document.getElementById('langSelect').value;
-  const trans = translations[lang];
+  const trans = translations[currentLang];
 
   if(!cl || !t) return showToast(trans.toastFields, "#d9534f");
 
@@ -385,41 +558,38 @@ function requestBookFn(){
   showToast(`🙋 Request Posted: ${t}`, "#e77f24");
   document.getElementById('requestBook').value = "";
   
-  switchTab('requests'); // Auto switch to see your request
+  switchTab('requests'); 
 }
 
 function searchBook(){
   const cls = document.getElementById('buyClass').value;
   const term = document.getElementById('searchBook').value.trim().toLowerCase();
-  const lang = document.getElementById('langSelect').value;
-  const trans = translations[lang];
+  const trans = translations[currentLang];
   
   showToast(trans.toastSearching);
 
-  // Search in CURRENT tab only
   const db = currentTab === 'books' ? booksDB : requestsDB;
   
   const results = db.filter(item => {
     const matchClass = cls ? item.class === cls : true;
-    const matchName = term ? item.title.toLowerCase().includes(term) : true;
+    const matchName = term ? item.title.toLowerCase().includes(term) : true; 
     return matchClass && matchName;
   });
 
   renderFeed(results);
 }
 
-// --- 5. TRANSLATOR ---
-function changeLang(){
-  const lang = document.getElementById('langSelect').value;
-  const t = translations[lang];
+// --- 5. TRANSLATOR (Modified to remove langHeading) ---
+function changeLang(lang) {
+  currentLang = lang;
+  const t = translations[currentLang];
 
   // 1. Hero Section
   document.getElementById("titleMain").innerText = t.title;
   document.getElementById("subtitle").innerText = t.subtitle;
   
-  // Update action buttons (Browse/How it works)
-  document.querySelector(".primary-btn").innerHTML = `${t.browse}`; // Simplified innerHTML for demo
-  document.querySelector(".ghost-btn").innerText = t.howitworks;
+  document.querySelector(".primary-btn").innerText = t.browse;
+  document.getElementById("howItWorksBtn").innerText = t.howitworks;
   
   document.getElementById("quickSteps").innerText = t.quickSteps;
   document.getElementById("step1").innerText = t.step1;
@@ -429,9 +599,8 @@ function changeLang(){
   // 2. Sell Form
   document.getElementById("bookDetails").innerText = t.sellBook;
   document.getElementById("bookTitle").placeholder = t.sellTitle;
-  document.getElementById("sellBtn").innerHTML = `<span>${t.submitSell.split(' ➔')[0]}</span> <span>➔</span>`;
+  document.getElementById("sellBtn").innerHTML = `<span>${t.submitSell.split(' ➔')[0]}</span> <span>➔</span>`; 
   
-  // Update Condition Options
   document.querySelector('#bookCondition option[value="New"]').innerText = t.condNew;
   document.querySelector('#bookCondition option[value="Good"]').innerText = t.condGood;
   document.querySelector('#bookCondition option[value="Fair"]').innerText = t.condFair;
@@ -449,16 +618,60 @@ function changeLang(){
   document.getElementById("tabBooks").innerText = t.tabAvailable;
   document.getElementById("tabReq").innerText = t.tabWanted;
 
-  // 5. Language Status
+  // 5. Language Status (Hidden, but updated for completeness)
   document.getElementById("langStatus").innerText = t.langStatus;
-  
-  // 6. Update Class Dropdown defaults (e.g., 'Class')
+
+  // 6. Update Class Dropdown defaults
   document.getElementById("buyClass").querySelector('option[value=""]').innerText = t.classDefault;
   document.getElementById("requestClass").querySelector('option[value=""]').innerText = t.classDefault;
+  
+  // 7. Modal Content Translation
+  document.getElementById("modalTitle").innerText = t.modalTitle;
+  document.getElementById("sellerSteps").previousElementSibling.innerText = t.sellerTitle;
+  document.getElementById("buyerSteps").previousElementSibling.innerText = t.buyerTitle;
+  document.getElementById("sellerSteps").innerHTML = t.sellerSteps.map(step => `<li>${step}</li>`).join('');
+  document.getElementById("buyerSteps").innerHTML = t.buyerSteps.map(step => `<li>${step}</li>`).join('');
+  document.getElementById("buyerSteps").nextElementSibling.innerHTML = t.modalFooter;
 
-  // Re-render feed to apply translated text in the book cards if necessary (like Class/User needs this text)
+  // 8. Update Active Link in Dropdown
+  document.querySelectorAll('#langDropdown a').forEach(link => {
+      link.classList.remove('active-lang');
+      if (link.dataset.lang === currentLang) {
+          link.classList.add('active-lang');
+      }
+  });
+
   renderFeed();
 }
+
+// --- 6. MODAL FUNCTIONS (Unchanged) ---
+
+function showHowItWorksModal() {
+    document.getElementById('howItWorksModal').classList.add('show-modal');
+}
+
+function closeHowItWorksModal(event) {
+    if (event && event.target.id !== 'howItWorksModal' && !event.target.classList.contains('modal-close')) {
+        return; 
+    }
+    document.getElementById('howItWorksModal').classList.remove('show-modal');
+}
+
+// --- 7. LANGUAGE DROPDOWN TOGGLE (Unchanged) ---
+function toggleLangDropdown(event) {
+    event.stopPropagation(); 
+    document.getElementById('langDropdown').classList.toggle('show');
+}
+
+// Close the dropdown if the user clicks anywhere else on the screen
+document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('langDropdown');
+    // Check if the click occurred outside the dropdown and outside the icon container
+    if (dropdown.classList.contains('show') && !dropdown.contains(event.target) && !event.target.closest('.lang-icon-container')) {
+        dropdown.classList.remove('show');
+    }
+});
+
 
 // --- UTILS ---
 function showToast(message, color = "#333") {
@@ -469,3 +682,5 @@ function showToast(message, color = "#333") {
   setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 </script>
+</body>
+</html>
